@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P7T – Nitro & Boosts de serveur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <meta name="description" content="Boutique de Nitro et de boosts de serveur à petit prix. Paiement PayPal, commande simple, support réactif.">
 <style>
 :root{
-  --bg:#0c0d14;--bg2:#13141f;--card:#181a28;--line:#262940;
-  --text:#eceefb;--muted:#9aa0c3;--accent:#7c5cff;--accent2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--danger:#f87171;
+  --bg:#0b0514;--bg2:#140a22;--card:#1a0d2c;--line:#3a1f55;
+  --text:#fff4fb;--muted:#c3a5d6;--accent:#ff2e93;--accent2:#ff9f1c;--ok:#19e3d1;--warn:#ffd23f;--danger:#ff5d73;--purple:#8a2be2;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -192,6 +194,96 @@ footer{border-top:1px solid var(--line);padding:50px 0 30px;background:var(--bg2
 .note{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.35);color:#f3d78a;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0}
 .fab{position:fixed;left:16px;bottom:16px;z-index:250;background:var(--accent);color:#fff;border:0;border-radius:99px;padding:10px 18px;font-weight:600;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 @media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+
+/* ===== THEME GTA VI : coucher de soleil Vice City ===== */
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg) radial-gradient(900px 500px at 85% 0%,rgba(138,43,226,.22),transparent) no-repeat}
+h1,h2,.logo,.tag,.badge,.tab{font-family:"Bebas Neue",Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+h1{font-weight:400;letter-spacing:.02em}
+.title{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:400}
+.logo{font-size:1.9rem;letter-spacing:.08em}
+.tag{border-color:var(--accent);color:var(--accent2);font-size:.95rem;background:rgba(255,46,147,.08)}
+.grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header{background:rgba(11,5,20,.82);border-bottom:1px solid transparent;border-image:linear-gradient(90deg,var(--accent),var(--accent2),var(--purple)) 1}
+.banner{background:linear-gradient(90deg,var(--purple),var(--accent),var(--accent2))}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 8px 30px rgba(255,46,147,.4);text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+.btn-primary:hover{box-shadow:0 10px 40px rgba(255,159,28,.55);transform:translateY(-3px) scale(1.03)}
+.btn-ghost:hover,.cart-btn:hover{border-color:var(--accent2);box-shadow:0 0 18px rgba(255,159,28,.3)}
+.tab:hover{border-color:var(--accent);color:var(--text);transform:translateY(-2px)}
+.tab{transition:.2s;font-size:1.05rem}
+.cart-btn b{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+/* Hero : soleil, grille néon et palmiers */
+.hero{position:relative;overflow:hidden;padding:120px 0 110px;background:linear-gradient(180deg,#12042a 0%,#3b0d5c 38%,#a3157a 68%,#ff4f7a 88%,#ff9f1c 100%)}
+.hero::before{content:"";position:absolute;right:8%;bottom:14%;width:min(420px,60vw);aspect-ratio:1;border-radius:50%;background:linear-gradient(180deg,#ffe36e,#ff9f1c 45%,#ff2e93);opacity:.9;filter:drop-shadow(0 0 60px rgba(255,159,28,.7));-webkit-mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);-webkit-mask-size:100% 100%;mask-size:100% 100%}
+.hero::after{content:"";position:absolute;left:-20%;right:-20%;bottom:0;height:34%;background:linear-gradient(180deg,transparent,rgba(11,5,20,.96) 75%),repeating-linear-gradient(90deg,rgba(255,46,147,.55) 0 2px,transparent 2px 70px),repeating-linear-gradient(0deg,rgba(255,159,28,.45) 0 2px,transparent 2px 36px);transform:perspective(300px) rotateX(55deg);transform-origin:bottom;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero .hero-grid{position:relative;z-index:2}
+.hero h1{font-size:clamp(2.8rem,7vw,5.2rem);line-height:1;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.hero h1 em{background:linear-gradient(180deg,#fff,#ffe36e 40%,#ff9f1c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(255,46,147,.8))}
+.hero p{color:#ffe9f6;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hero-card{background:rgba(20,8,34,.82);backdrop-filter:blur(10px);border-color:rgba(255,46,147,.5);box-shadow:0 0 50px rgba(255,46,147,.3),0 30px 80px rgba(0,0,0,.5)}
+.hero-img{border-color:var(--accent);box-shadow:0 0 50px rgba(255,46,147,.4)}
+.hero .tag{background:rgba(11,5,20,.6)}
+.trust{background:linear-gradient(90deg,#1b0833,#2a0b45,#1b0833)}
+.trust-grid strong{color:var(--accent2)}
+.step .n{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.card li::before{color:var(--ok)}
+.contact-box{background:linear-gradient(135deg,rgba(255,46,147,.22),rgba(138,43,226,.22),rgba(255,159,28,.15));border-color:var(--accent)}
+footer{background:#08030f}
+details{transition:.2s}
+details:hover,details[open]{border-color:var(--accent)}
+summary::after{color:var(--accent2)}
+.drawer,.box{background:#120720}
+.edit-chip{border-color:var(--accent2)}
+.atab.on{background:var(--accent)}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:#0b0514}::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--accent2));border-radius:8px}
+
+/* Palmiers */
+.hero .wrap::before,.hero .wrap::after{content:"🌴";position:absolute;bottom:-70px;font-size:11rem;filter:brightness(0);opacity:.85;pointer-events:none;z-index:-1}
+.hero .wrap::before{left:-40px;transform:rotate(-6deg)}
+.hero .wrap::after{right:-30px;transform:scaleX(-1) rotate(-6deg)}
+@media(max-width:900px){.hero .wrap::before,.hero .wrap::after{font-size:7rem}}
+
+/* ===== EFFETS AU SURVOL DES ARTICLES ===== */
+.card{overflow:hidden;background:linear-gradient(160deg,#21103a,#150a26);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out,box-shadow .35s,border-color .35s}
+.card:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-10px) scale(1.035);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 24px 60px -12px rgba(255,46,147,.6),0 0 45px rgba(255,159,28,.28);z-index:5}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.16),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+.card:hover::before{opacity:1}
+.card::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);pointer-events:none;z-index:1}
+.card:hover::after{animation:shine .9s ease}
+@keyframes shine{to{left:150%}}
+.card .ico{display:inline-block;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.card:hover .ico{transform:scale(1.35) rotate(-10deg)}
+.pimg img{transition:transform .6s ease}
+.card:hover .pimg img{transform:scale(1.14)}
+.card h3{transition:color .25s}
+.card:hover h3{color:var(--accent2)}
+.card li{transition:transform .25s,color .25s}
+.card:hover li{color:var(--text)}
+.card:hover li:nth-child(1){transform:translateX(4px)}
+.card:hover li:nth-child(2){transform:translateX(8px);transition-delay:.05s}
+.card:hover li:nth-child(3){transform:translateX(12px);transition-delay:.1s}
+.price b{transition:.3s}
+.card:hover .price b{color:var(--accent2);text-shadow:0 0 22px rgba(255,159,28,.8);transform:scale(1.08);display:inline-block}
+.card .btn{position:relative;z-index:2}
+.card:hover .btn-primary{box-shadow:0 0 32px rgba(255,46,147,.8);letter-spacing:.09em}
+.badge{background:linear-gradient(90deg,var(--accent2),var(--warn));animation:pulse 2.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 18px rgba(255,210,63,.85)}}
+.step,.feat{transition:.3s}
+.step:hover,.feat:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 14px 40px -10px rgba(255,46,147,.5)}
+.mini{transition:.2s}.mini:hover{padding-left:8px;color:var(--accent2)}
+@media(prefers-reduced-motion:reduce){.card,.card:hover{transform:none!important;animation:none!important}.card::after{display:none}.badge{animation:none}}
+
+/* ===== LANGUES ===== */
+.nav-r{display:flex;align-items:center;gap:10px}
+.lang{position:relative}
+.lang-menu{display:none;position:absolute;right:0;top:calc(100% + 8px);background:#150a26;border:1px solid var(--accent);border-radius:14px;padding:6px;min-width:170px;z-index:80;box-shadow:0 20px 50px rgba(0,0,0,.6);max-height:70vh;overflow:auto}
+.lang.open .lang-menu{display:block}
+.lang-menu button{display:flex;gap:10px;align-items:center;width:100%;background:none;border:0;color:var(--text);padding:9px 12px;border-radius:9px;cursor:pointer;font-size:.92rem;text-align:left;font-family:inherit}
+.lang-menu button:hover,.lang-menu button.on{background:rgba(255,46,147,.2)}
+[dir=rtl] .lang-menu{right:auto;left:0}
+[dir=rtl] .lang-menu button,[dir=rtl] .card,[dir=rtl] details{text-align:right}
 </style>
 </head>
 <body>
@@ -209,7 +301,10 @@ footer{border-top:1px solid var(--line);padding:50px 0 30px;background:var(--bg2
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul></nav>
-    <button class="cart-btn" onclick="toggleCart()">🛒 Panier <b id="cart-count">0</b></button>
+    <div class="nav-r">
+      <div class="lang" id="lang"><button class="cart-btn" id="lang-btn" aria-label="Language"></button><div class="lang-menu" id="lang-menu"></div></div>
+      <button class="cart-btn" id="cart-btn" onclick="toggleCart()">🛒 Panier <b id="cart-count">0</b></button>
+    </div>
   </div>
 </header>
 
@@ -332,11 +427,11 @@ footer{border-top:1px solid var(--line);padding:50px 0 30px;background:var(--bg2
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><div class="logo" id="flogo" style="margin-bottom:10px"></div>Boutique indépendante de services pour communautés en ligne.</div>
+      <div><div class="logo" id="flogo" style="margin-bottom:10px"></div><span id="f-desc">Boutique indépendante de services pour communautés en ligne.</span></div>
       <div><h4>Navigation</h4><ul><li><a href="#produits">Produits</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div><h4>Légal</h4><ul><li><a href="#">CGV</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">Politique de confidentialité</a></li></ul></div>
     </div>
-    <div class="legal"><span id="secret">©</span> 2026 <span id="f-name"></span>. Site indépendant, non affilié à Discord Inc. « Discord » et « Nitro » sont des marques de leurs propriétaires respectifs.</div>
+    <div class="legal"><span id="secret">©</span> 2026 <span id="f-name"></span>. <span id="f-legal">Site indépendant, non affilié à Discord Inc. « Discord » et « Nitro » sont des marques de leurs propriétaires respectifs.</span></div>
   </div>
 </footer>
 
@@ -350,8 +445,160 @@ footer{border-top:1px solid var(--line);padding:50px 0 30px;background:var(--bg2
 <div class="modal" id="pay" onclick="if(event.target===this)closePay()"><div class="box" id="pay-box"></div></div>
 <div class="toast" id="toast"></div>
 
-<script type="application/json" id="site-data">{"v":1,"name":"P7T","tagline":"⚡ Boutique de services pour communautés","heroTitle":"Nitro & boosts de serveur,","heroEm":"au meilleur prix","heroText":"Donne de la puissance à ton serveur : niveaux de boost, emojis, qualité audio et plus encore. Commande en quelques clics et paie simplement avec PayPal.","heroImage":"","logoImage":"","banner":"","accent":"#7c5cff","accent2":"#22d3ee","paypal":"vraibdg1","currency":"EUR","contact":"","discount":0,"promos":[{"code":"P7T10","type":"percent","value":10,"active":false}],"products":[{"id":1,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×2","desc":"Passe ton serveur niveau 1.","price":4.99,"old":6.99,"badge":"Populaire","feat":["Durée : 1 mois","2 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":2,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×7","desc":"Débloque le niveau 2.","price":14.99,"old":19.99,"badge":"","feat":["Durée : 1 mois","7 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":3,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×14","desc":"Débloque le niveau 3.","price":29.99,"old":39.99,"badge":"Top vente","feat":["Durée : 1 mois","14 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":4,"cat":"Boosts de serveur","ico":"📆","img":"","name":"Boost serveur ×14 (3 mois)","desc":"Niveau 3 sur la durée.","price":79.99,"old":99.99,"badge":"","feat":["Durée : 3 mois","14 boosts","Support prioritaire"],"hidden":false,"soldout":false},{"id":5,"cat":"Nitro","ico":"💎","img":"","name":"Nitro Basic – 1 mois","desc":"Les essentiels du Nitro.","price":2.99,"old":3.99,"badge":"","feat":["Durée : 1 mois","Emojis partout","Fichiers plus lourds"],"hidden":false,"soldout":false},{"id":6,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 1 mois","desc":"L'expérience complète.","price":7.99,"old":9.99,"badge":"Promo","feat":["Durée : 1 mois","Boosts inclus","Streaming amélioré"],"hidden":false,"soldout":false},{"id":7,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 12 mois","desc":"Le meilleur rapport durée/prix.","price":69.99,"old":95.99,"badge":"","feat":["Durée : 12 mois","Boosts inclus","Économie maximale"],"hidden":false,"soldout":false},{"id":8,"cat":"Packs","ico":"🎁","img":"","name":"Pack Communauté","desc":"Nitro 1 mois + boost ×7.","price":19.99,"old":22.98,"badge":"Pack","feat":["Nitro 1 mois","Boost ×7 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false},{"id":9,"cat":"Packs","ico":"👑","img":"","name":"Pack Ultime","desc":"Nitro 12 mois + boost ×14.","price":89.99,"old":109.98,"badge":"","feat":["Nitro 12 mois","Boost ×14 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false}]}</script>
+<script type="application/json" id="site-data">{"v":1795500000000,"name":"P7T","tagline":"⚡ Boutique de services pour communautés","heroTitle":"Nitro & boosts de serveur,","heroEm":"au meilleur prix","heroText":"Donne de la puissance à ton serveur : niveaux de boost, emojis, qualité audio et plus encore. Commande en quelques clics et paie simplement avec PayPal.","heroImage":"","logoImage":"","banner":"","accent":"#ff2e93","accent2":"#ff9f1c","paypal":"vraibdg1","currency":"EUR","contact":"","discount":0,"promos":[{"code":"P7T10","type":"percent","value":10,"active":false}],"products":[{"id":1,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×2","desc":"Passe ton serveur niveau 1.","price":4.99,"old":6.99,"badge":"Populaire","feat":["Durée : 1 mois","2 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":2,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×7","desc":"Débloque le niveau 2.","price":14.99,"old":19.99,"badge":"","feat":["Durée : 1 mois","7 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":3,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×14","desc":"Débloque le niveau 3.","price":29.99,"old":39.99,"badge":"Top vente","feat":["Durée : 1 mois","14 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":4,"cat":"Boosts de serveur","ico":"📆","img":"","name":"Boost serveur ×14 (3 mois)","desc":"Niveau 3 sur la durée.","price":79.99,"old":99.99,"badge":"","feat":["Durée : 3 mois","14 boosts","Support prioritaire"],"hidden":false,"soldout":false},{"id":5,"cat":"Nitro","ico":"💎","img":"","name":"Nitro Basic – 1 mois","desc":"Les essentiels du Nitro.","price":2.99,"old":3.99,"badge":"","feat":["Durée : 1 mois","Emojis partout","Fichiers plus lourds"],"hidden":false,"soldout":false},{"id":6,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 1 mois","desc":"L'expérience complète.","price":7.99,"old":9.99,"badge":"Promo","feat":["Durée : 1 mois","Boosts inclus","Streaming amélioré"],"hidden":false,"soldout":false},{"id":7,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 12 mois","desc":"Le meilleur rapport durée/prix.","price":69.99,"old":95.99,"badge":"","feat":["Durée : 12 mois","Boosts inclus","Économie maximale"],"hidden":false,"soldout":false},{"id":8,"cat":"Packs","ico":"🎁","img":"","name":"Pack Communauté","desc":"Nitro 1 mois + boost ×7.","price":19.99,"old":22.98,"badge":"Pack","feat":["Nitro 1 mois","Boost ×7 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false},{"id":9,"cat":"Packs","ico":"👑","img":"","name":"Pack Ultime","desc":"Nitro 12 mois + boost ×14.","price":89.99,"old":109.98,"badge":"","feat":["Nitro 12 mois","Boost ×14 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false}]}</script>
 
+<script>
+/* ===================== LANGUES ===================== */
+const PFR=["Boosts de serveur","Nitro","Packs","Boost serveur ×2","Boost serveur ×7","Boost serveur ×14","Boost serveur ×14 (3 mois)","Nitro Basic – 1 mois","Nitro – 1 mois","Nitro – 12 mois","Pack Communauté","Pack Ultime","Passe ton serveur niveau 1.","Débloque le niveau 2.","Débloque le niveau 3.","Niveau 3 sur la durée.","Les essentiels du Nitro.","L'expérience complète.","Le meilleur rapport durée/prix.","Nitro 1 mois + boost ×7.","Nitro 12 mois + boost ×14.","Populaire","Top vente","Promo","Pack","Durée : 1 mois","2 boosts","7 boosts","14 boosts","Support inclus","Durée : 3 mois","Support prioritaire","Emojis partout","Fichiers plus lourds","Boosts inclus","Streaming amélioré","Durée : 12 mois","Économie maximale","Nitro 1 mois","Boost ×7 (1 mois)","Nitro 12 mois","Boost ×14 (1 mois)"];
+const DEFFR={tagline:"⚡ Boutique de services pour communautés",heroTitle:"Nitro & boosts de serveur,",heroEm:"au meilleur prix",heroText:"Donne de la puissance à ton serveur : niveaux de boost, emojis, qualité audio et plus encore. Commande en quelques clics et paie simplement avec PayPal."};
+const I18N={};
+const LANG_ORDER=['fr','en','es','it','de','pt','ru','ar','zh'];
+let LANG='fr';
+try{ LANG=localStorage.getItem('p7t_lang')||(navigator.language||'fr').slice(0,2).toLowerCase(); }catch(e){}
+
+I18N.fr={n:'Français',f:'🇫🇷',u:{
+n1:"Produits",n2:"Comment ça marche",n3:"Avantages",n4:"Comparatif",n5:"FAQ",n6:"Contact",cart:"Panier",cta1:"Voir les offres",
+popular:"Offres populaires",from:"dès",
+tr1t:"💳 Paiement PayPal",tr1s:"Simple et reconnu",tr2t:"⚡ Livraison rapide",tr2s:"Après vérification du paiement",tr3t:"💬 Support humain",tr3s:"Une vraie personne répond",tr4t:"🔁 Suivi de commande",tr4s:"Code de commande unique",
+tagc:"Catalogue",ctitle:"Choisis ton offre",csub:"Des packs adaptés à tous les serveurs, du petit groupe d'amis à la grande communauté.",all:"Tout",
+tags:"Simple",htitle:"Comment ça marche ?",hsub:"Quatre étapes, pas de prise de tête.",
+s1t:"Choisis",s1p:"Sélectionne ton offre et ajoute-la au panier.",s2t:"Commande",s2p:"Valide avec ton pseudo : tu reçois un code de commande unique.",s3t:"Paie avec PayPal",s3p:"Règle le montant exact et indique ton code dans la note PayPal.",s4t:"Reçois",s4p:"Livraison dès que le paiement est vérifié.",
+tagw:"Pourquoi nous",atitle:"Nos avantages",asub:"Ce qui fait la différence quand tu commandes chez nous.",
+a1t:"Prix attractifs",a1p:"Des tarifs compétitifs, affichés clairement, sans frais cachés.",a2t:"Transparence",a2p:"Durée et contenu de chaque offre indiqués avant l'achat.",a3t:"Support dédié",a3p:"Un souci ? Contacte-nous avec ton code de commande.",a4t:"Données minimales",a4p:"On ne demande jamais ton mot de passe Discord. Jamais.",a5t:"Packs avantageux",a5p:"Plus tu prends, plus tu économises.",a6t:"Codes promo",a6p:"Soldes et codes réguliers annoncés sur nos canaux.",
+tagp:"Comparatif",ptitle:"Nitro Basic ou Nitro ?",psub:"Un aperçu rapide pour choisir. Vérifie toujours les avantages actuels sur le site officiel de Discord.",pf1:"Fonction",pr1:"Emojis personnalisés partout",pr2:"Limite d'envoi de fichiers augmentée",pr3:"Boosts de serveur inclus",pr4:"Streaming en meilleure qualité",higher:"(plus élevée)",
+tagf:"FAQ",ftitle:"Questions fréquentes",
+q1:"Quels moyens de paiement acceptez-vous ?",r1:"Uniquement PayPal. Après validation de ta commande, un bouton te redirige vers PayPal avec le montant exact.",
+q2:"À quoi sert le code de commande ?",r2:"Il identifie ta commande. Indique-le dans la note du paiement PayPal et envoie-le au support pour que l'on retrouve ton paiement.",
+q3:"Quel est le délai de livraison ?",r3:"La livraison commence une fois le paiement vérifié. Si ta commande tarde, contacte le support avec ton code.",
+q4:"Que dois-je fournir pour un boost de serveur ?",r4:"Le nom ou l'invitation de ton serveur. Nous ne demandons jamais ton mot de passe ni ton code d'authentification.",
+q5:"Puis-je être remboursé ?",r5:"Si une commande ne peut pas être livrée, elle est remboursée.",
+q6:"Êtes-vous affilié à Discord ?",r6:"Non. Ce site est indépendant et n'est ni affilié, ni approuvé, ni sponsorisé par Discord Inc.",
+cttitle:"Une question avant de commander ?",cttext:"Écris-nous, on te répond avec plaisir.",ctbtn:"Contacter le support",
+fdesc:"Boutique indépendante de services pour communautés en ligne.",fnav:"Navigation",flegal:"Légal",cgv:"CGV",ment:"Mentions légales",priv:"Politique de confidentialité",
+legal:"Site indépendant, non affilié à Discord Inc. « Discord » et « Nitro » sont des marques de leurs propriétaires respectifs.",
+yourcart:"Ton panier",empty:"Ton panier est vide.",sub:"Sous-total",promoph:"Code promo",apply:"Appliquer",code:"Code",total:"Total",pseudo:"Ton pseudo Discord (pour la livraison)",server:"Nom / invitation du serveur (si boost)",order:"Commander & payer avec PayPal",
+added:"Ajouté au panier ✔",badcode:"Code invalide",okcode:"Code appliqué ✔",needpseudo:"Indique ton pseudo Discord",emptytoast:"Panier vide",
+ready:"✅ Commande prête",readys:"Voici ton code de commande. Garde-le, il t'identifie.",topay:"Total à payer",
+o1:"Clique sur le bouton PayPal et paie exactement {0}.",o2:"Écris {0} dans la note du paiement.",o3:"Envoie ta preuve de paiement + ton code au support.",o4:"Ta commande est livrée dès que le paiement est vérifié.",
+paybtn:"Payer {0} avec PayPal",nopp:"PayPal n'est pas configuré. Contacte le support.",proof:"📨 Envoyer ma preuve de paiement",copy:"📋 Copier le récapitulatif",copied:"Récapitulatif copié ✔",finish:"Terminer & vider le panier",thanks:"Merci pour ta commande ✔",
+addbtn:"Ajouter au panier",soldout:"Rupture de stock",hidden:"Masqué",none:"Aucun produit pour le moment.",soon:"Bientôt de nouvelles offres",sale:"🔥 Soldes : -{0}% sur tout le site !"
+}};
+
+I18N.en={n:'English',f:'🇬🇧',u:{
+n1:"Products",n2:"How it works",n3:"Benefits",n4:"Compare",n5:"FAQ",n6:"Contact",cart:"Cart",cta1:"See offers",
+popular:"Popular offers",from:"from",
+tr1t:"💳 PayPal payment",tr1s:"Simple and trusted",tr2t:"⚡ Fast delivery",tr2s:"After payment is verified",tr3t:"💬 Human support",tr3s:"A real person replies",tr4t:"🔁 Order tracking",tr4s:"Unique order code",
+tagc:"Catalog",ctitle:"Pick your offer",csub:"Packs for every server, from small friend groups to huge communities.",all:"All",
+tags:"Easy",htitle:"How does it work?",hsub:"Four steps, no headaches.",
+s1t:"Choose",s1p:"Pick your offer and add it to the cart.",s2t:"Order",s2p:"Confirm with your username: you get a unique order code.",s3t:"Pay with PayPal",s3p:"Pay the exact amount and put your code in the PayPal note.",s4t:"Receive",s4p:"Delivery as soon as the payment is verified.",
+tagw:"Why us",atitle:"Our benefits",asub:"What makes the difference when you order from us.",
+a1t:"Great prices",a1p:"Competitive rates, clearly displayed, no hidden fees.",a2t:"Transparency",a2p:"Duration and content of each offer shown before you buy.",a3t:"Dedicated support",a3p:"Any issue? Contact us with your order code.",a4t:"Minimal data",a4p:"We never ask for your Discord password. Ever.",a5t:"Bundle deals",a5p:"The more you take, the more you save.",a6t:"Promo codes",a6p:"Sales and regular codes announced on our channels.",
+tagp:"Compare",ptitle:"Nitro Basic or Nitro?",psub:"A quick overview to help you choose. Always check current perks on Discord's official site.",pf1:"Feature",pr1:"Custom emojis everywhere",pr2:"Higher file upload limit",pr3:"Server boosts included",pr4:"Better streaming quality",higher:"(higher)",
+tagf:"FAQ",ftitle:"Frequently asked questions",
+q1:"Which payment methods do you accept?",r1:"PayPal only. After you confirm your order, a button sends you to PayPal with the exact amount.",
+q2:"What is the order code for?",r2:"It identifies your order. Put it in the PayPal payment note and send it to support so we can find your payment.",
+q3:"What is the delivery time?",r3:"Delivery starts once the payment is verified. If your order is late, contact support with your code.",
+q4:"What do I need to provide for a server boost?",r4:"The name or invite of your server. We never ask for your password or authentication code.",
+q5:"Can I get a refund?",r5:"If an order cannot be delivered, it is refunded.",
+q6:"Are you affiliated with Discord?",r6:"No. This site is independent and is not affiliated with, endorsed by or sponsored by Discord Inc.",
+cttitle:"A question before ordering?",cttext:"Write to us, we'll be happy to help.",ctbtn:"Contact support",
+fdesc:"Independent shop of services for online communities.",fnav:"Navigation",flegal:"Legal",cgv:"Terms of sale",ment:"Legal notice",priv:"Privacy policy",
+legal:"Independent site, not affiliated with Discord Inc. “Discord” and “Nitro” are trademarks of their respective owners.",
+yourcart:"Your cart",empty:"Your cart is empty.",sub:"Subtotal",promoph:"Promo code",apply:"Apply",code:"Code",total:"Total",pseudo:"Your Discord username (for delivery)",server:"Server name / invite (if boost)",order:"Order & pay with PayPal",
+added:"Added to cart ✔",badcode:"Invalid code",okcode:"Code applied ✔",needpseudo:"Enter your Discord username",emptytoast:"Cart is empty",
+ready:"✅ Order ready",readys:"Here is your order code. Keep it, it identifies you.",topay:"Total to pay",
+o1:"Click the PayPal button and pay exactly {0}.",o2:"Write {0} in the payment note.",o3:"Send your proof of payment + your code to support.",o4:"Your order is delivered as soon as the payment is verified.",
+paybtn:"Pay {0} with PayPal",nopp:"PayPal is not configured. Contact support.",proof:"📨 Send my proof of payment",copy:"📋 Copy summary",copied:"Summary copied ✔",finish:"Finish & empty cart",thanks:"Thanks for your order ✔",
+addbtn:"Add to cart",soldout:"Out of stock",hidden:"Hidden",none:"No products yet.",soon:"New offers coming soon",sale:"🔥 Sale: -{0}% site-wide!",
+d_tagline:"⚡ Services shop for communities",d_heroTitle:"Nitro & server boosts,",d_heroEm:"at the best price",d_heroText:"Power up your server: boost levels, emojis, audio quality and more. Order in a few clicks and pay simply with PayPal."
+},p:["Server boosts","Nitro","Bundles","Server Boost ×2","Server Boost ×7","Server Boost ×14","Server Boost ×14 (3 months)","Nitro Basic – 1 month","Nitro – 1 month","Nitro – 12 months","Community Pack","Ultimate Pack","Take your server to level 1.","Unlock level 2.","Unlock level 3.","Level 3 for the long run.","The Nitro essentials.","The full experience.","Best value for the duration.","Nitro 1 month + boost ×7.","Nitro 12 months + boost ×14.","Popular","Best seller","Sale","Bundle","Duration: 1 month","2 boosts","7 boosts","14 boosts","Support included","Duration: 3 months","Priority support","Emojis everywhere","Bigger files","Boosts included","Improved streaming","Duration: 12 months","Maximum savings","Nitro 1 month","Boost ×7 (1 month)","Nitro 12 months","Boost ×14 (1 month)"]};
+
+I18N.es={n:'Español',f:'🇪🇸',u:{
+n1:"Productos",n2:"Cómo funciona",n3:"Ventajas",n4:"Comparar",n5:"FAQ",n6:"Contacto",cart:"Carrito",cta1:"Ver ofertas",popular:"Ofertas populares",from:"desde",
+tr1t:"💳 Pago con PayPal",tr1s:"Simple y fiable",tr2t:"⚡ Entrega rápida",tr2s:"Tras verificar el pago",tr3t:"💬 Soporte humano",tr3s:"Responde una persona real",tr4t:"🔁 Seguimiento",tr4s:"Código de pedido único",
+tagc:"Catálogo",ctitle:"Elige tu oferta",csub:"Packs para todos los servidores, desde grupos de amigos hasta grandes comunidades.",all:"Todo",
+tags:"Fácil",htitle:"¿Cómo funciona?",hsub:"Cuatro pasos, sin complicaciones.",
+s1t:"Elige",s1p:"Selecciona tu oferta y añádela al carrito.",s2t:"Pide",s2p:"Confirma con tu usuario: recibes un código de pedido único.",s3t:"Paga con PayPal",s3p:"Paga el importe exacto y pon tu código en la nota de PayPal.",s4t:"Recibe",s4p:"Entrega en cuanto se verifique el pago.",
+tagw:"Por qué nosotros",atitle:"Nuestras ventajas",asub:"Lo que marca la diferencia cuando compras con nosotros.",
+a1t:"Precios atractivos",a1p:"Tarifas competitivas, claras y sin costes ocultos.",a2t:"Transparencia",a2p:"Duración y contenido de cada oferta antes de comprar.",a3t:"Soporte dedicado",a3p:"¿Algún problema? Contáctanos con tu código de pedido.",a4t:"Datos mínimos",a4p:"Nunca pedimos tu contraseña de Discord. Nunca.",a5t:"Packs ventajosos",a5p:"Cuanto más compras, más ahorras.",a6t:"Códigos promo",a6p:"Rebajas y códigos anunciados en nuestros canales.",
+tagp:"Comparar",ptitle:"¿Nitro Basic o Nitro?",psub:"Un resumen rápido para elegir. Comprueba siempre las ventajas actuales en el sitio oficial de Discord.",pf1:"Función",pr1:"Emojis personalizados en todas partes",pr2:"Mayor límite de subida de archivos",pr3:"Boosts de servidor incluidos",pr4:"Mejor calidad de streaming",higher:"(mayor)",
+tagf:"FAQ",ftitle:"Preguntas frecuentes",
+q1:"¿Qué métodos de pago aceptáis?",r1:"Solo PayPal. Al confirmar tu pedido, un botón te lleva a PayPal con el importe exacto.",
+q2:"¿Para qué sirve el código de pedido?",r2:"Identifica tu pedido. Ponlo en la nota del pago de PayPal y envíalo al soporte para encontrar tu pago.",
+q3:"¿Cuál es el plazo de entrega?",r3:"La entrega empieza tras verificar el pago. Si tu pedido se retrasa, contacta con el soporte con tu código.",
+q4:"¿Qué debo facilitar para un boost de servidor?",r4:"El nombre o la invitación de tu servidor. Nunca pedimos tu contraseña ni tu código de autenticación.",
+q5:"¿Puedo obtener un reembolso?",r5:"Si un pedido no se puede entregar, se reembolsa.",
+q6:"¿Estáis afiliados a Discord?",r6:"No. Este sitio es independiente y no está afiliado, aprobado ni patrocinado por Discord Inc.",
+cttitle:"¿Alguna duda antes de pedir?",cttext:"Escríbenos, te respondemos encantados.",ctbtn:"Contactar con soporte",
+fdesc:"Tienda independiente de servicios para comunidades en línea.",fnav:"Navegación",flegal:"Legal",cgv:"Condiciones de venta",ment:"Aviso legal",priv:"Política de privacidad",
+legal:"Sitio independiente, no afiliado a Discord Inc. «Discord» y «Nitro» son marcas de sus respectivos propietarios.",
+yourcart:"Tu carrito",empty:"Tu carrito está vacío.",sub:"Subtotal",promoph:"Código promo",apply:"Aplicar",code:"Código",total:"Total",pseudo:"Tu usuario de Discord (para la entrega)",server:"Nombre / invitación del servidor (si boost)",order:"Pedir y pagar con PayPal",
+added:"Añadido al carrito ✔",badcode:"Código no válido",okcode:"Código aplicado ✔",needpseudo:"Indica tu usuario de Discord",emptytoast:"Carrito vacío",
+ready:"✅ Pedido listo",readys:"Este es tu código de pedido. Guárdalo, te identifica.",topay:"Total a pagar",
+o1:"Pulsa el botón de PayPal y paga exactamente {0}.",o2:"Escribe {0} en la nota del pago.",o3:"Envía tu comprobante de pago + tu código al soporte.",o4:"Tu pedido se entrega en cuanto se verifique el pago.",
+paybtn:"Pagar {0} con PayPal",nopp:"PayPal no está configurado. Contacta con el soporte.",proof:"📨 Enviar mi comprobante de pago",copy:"📋 Copiar resumen",copied:"Resumen copiado ✔",finish:"Terminar y vaciar carrito",thanks:"Gracias por tu pedido ✔",
+addbtn:"Añadir al carrito",soldout:"Agotado",hidden:"Oculto",none:"Aún no hay productos.",soon:"Pronto, nuevas ofertas",sale:"🔥 Rebajas: -{0}% en todo el sitio.",
+d_tagline:"⚡ Tienda de servicios para comunidades",d_heroTitle:"Nitro y boosts de servidor,",d_heroEm:"al mejor precio",d_heroText:"Dale potencia a tu servidor: niveles de boost, emojis, calidad de audio y más. Pide en pocos clics y paga fácilmente con PayPal."
+},p:["Boosts de servidor","Nitro","Packs","Boost de servidor ×2","Boost de servidor ×7","Boost de servidor ×14","Boost de servidor ×14 (3 meses)","Nitro Basic – 1 mes","Nitro – 1 mes","Nitro – 12 meses","Pack Comunidad","Pack Definitivo","Lleva tu servidor al nivel 1.","Desbloquea el nivel 2.","Desbloquea el nivel 3.","Nivel 3 a largo plazo.","Lo esencial de Nitro.","La experiencia completa.","La mejor relación duración/precio.","Nitro 1 mes + boost ×7.","Nitro 12 meses + boost ×14.","Popular","Más vendido","Oferta","Pack","Duración: 1 mes","2 boosts","7 boosts","14 boosts","Soporte incluido","Duración: 3 meses","Soporte prioritario","Emojis en todas partes","Archivos más grandes","Boosts incluidos","Streaming mejorado","Duración: 12 meses","Máximo ahorro","Nitro 1 mes","Boost ×7 (1 mes)","Nitro 12 meses","Boost ×14 (1 mes)"]};
+
+/*__LANGS__*/
+
+function t(k,...a){
+  let s=I18N[LANG]&&I18N[LANG].u[k]; if(s==null) s=I18N.en.u[k]; if(s==null) s=I18N.fr.u[k]; if(s==null) return k;
+  a.forEach((v,i)=>{s=s.split('{'+i+'}').join(v)}); return s;
+}
+function dt(k){ return (LANG!=='fr'&&DATA[k]===DEFFR[k])?t('d_'+k):DATA[k]; }
+function pf(p,k){
+  if(LANG==='fr') return p[k];
+  const c=p.tr&&p.tr[LANG]&&p.tr[LANG][k]; if(c&&(!Array.isArray(c)||c.length)) return c;
+  const d=(I18N[LANG]&&I18N[LANG].p)||[]; const m=v=>{const i=PFR.indexOf(v);return(i>=0&&d[i])?d[i]:v;};
+  return Array.isArray(p[k])?p[k].map(m):m(p[k]);
+}
+function catLabel(c){ if(c==='all') return t('all'); const p=DATA.products.find(x=>x.cat===c); return p?pf(p,'cat'):c; }
+
+const ST=[
+['nav li:nth-child(1) a','n1'],['nav li:nth-child(2) a','n2'],['nav li:nth-child(3) a','n3'],['nav li:nth-child(4) a','n4'],['nav li:nth-child(5) a','n5'],['nav li:nth-child(6) a','n6'],
+['.hero .cta a:nth-child(1)','cta1'],['.hero .cta a:nth-child(2)','n2'],
+['#produits .tag','tagc'],['#produits .title','ctitle'],['#produits .sub','csub'],
+['#comment .tag','tags'],['#comment .title','htitle'],['#comment .sub','hsub'],
+['#avantages .tag','tagw'],['#avantages .title','atitle'],['#avantages .sub','asub'],
+['#comparatif .tag','tagp'],['#comparatif .title','ptitle'],['#comparatif .sub','psub'],['#comparatif tr:nth-child(1) th:nth-child(1)','pf1'],
+['#faq .tag','tagf'],['#faq .title','ftitle'],
+['#contact .title','cttitle'],['#contact .contact-box p','cttext'],['#contact-link','ctbtn'],
+['#f-desc','fdesc'],['#f-legal','legal'],['.drawer-head h3','yourcart'],
+['.foot > div:nth-child(2) h4','fnav'],['.foot > div:nth-child(2) li:nth-child(1) a','n1'],['.foot > div:nth-child(2) li:nth-child(2) a','n5'],['.foot > div:nth-child(2) li:nth-child(3) a','n6'],
+['.foot > div:nth-child(3) h4','flegal'],['.foot > div:nth-child(3) li:nth-child(1) a','cgv'],['.foot > div:nth-child(3) li:nth-child(2) a','ment'],['.foot > div:nth-child(3) li:nth-child(3) a','priv']
+];
+for(let i=1;i<=4;i++){ ST.push(['#comment .step:nth-child('+i+') h3','s'+i+'t'],['#comment .step:nth-child('+i+') p','s'+i+'p'],['#comparatif tr:nth-child('+(i+1)+') td:nth-child(1)','pr'+i]); }
+for(let i=1;i<=6;i++){ ST.push(['#avantages .feat:nth-child('+i+') h3','a'+i+'t'],['#avantages .feat:nth-child('+i+') p','a'+i+'p'],['#faq details:nth-of-type('+i+') summary','q'+i],['#faq details:nth-of-type('+i+') p','r'+i]); }
+function applyStatic(){
+  const q=s=>document.querySelector(s);
+  ST.forEach(([s,k])=>{const e=q(s); if(e) e.textContent=t(k);});
+  const hi=q('#comparatif tr:nth-child(3) td:nth-child(3)'); if(hi) hi.textContent='✅ '+t('higher');
+  for(let i=1;i<=4;i++){const e=q('.trust-grid div:nth-child('+i+')'); if(e) e.innerHTML='<strong>'+esc(t('tr'+i+'t'))+'</strong>'+esc(t('tr'+i+'s'));}
+  const n=q('#cart-count')?q('#cart-count').textContent:'0';
+  q('#cart-btn').innerHTML='🛒 '+esc(t('cart'))+' <b id="cart-count">'+n+'</b>';
+}
+function renderLang(){
+  const q=s=>document.querySelector(s);
+  q('#lang-btn').textContent=I18N[LANG].f+' '+LANG.toUpperCase()+' ▾';
+  q('#lang-menu').innerHTML=LANG_ORDER.filter(l=>I18N[l]).map(l=>'<button class="'+(l===LANG?'on':'')+'" data-l="'+l+'"><span>'+I18N[l].f+'</span>'+I18N[l].n+'</button>').join('');
+}
+function setLang(l){
+  if(!I18N[l]) l='fr'; LANG=l; try{localStorage.setItem('p7t_lang',l)}catch(e){}
+  document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+  renderAll(); renderLang();
+}
+function initLang(){
+  if(!I18N[LANG]) LANG='fr';
+  const L=document.getElementById('lang');
+  document.getElementById('lang-btn').addEventListener('click',e=>{e.stopPropagation();L.classList.toggle('open');});
+  document.getElementById('lang-menu').addEventListener('click',e=>{const b=e.target.closest('button');if(b){setLang(b.dataset.l);L.classList.remove('open');}});
+  document.addEventListener('click',()=>L.classList.remove('open'));
+  document.documentElement.lang=LANG; document.documentElement.dir=(LANG==='ar')?'rtl':'ltr';
+  renderLang();
+}
+</script>
 <script>
 /* Copie intacte du fichier au chargement : sert à "Publier" (export du site mis à jour). */
 const ORIGINAL = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;

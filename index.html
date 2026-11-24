@@ -603,8 +603,28 @@ function initLang(){
 /* Copie intacte du fichier au chargement : sert à "Publier" (export du site mis à jour). */
 const ORIGINAL = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
+/* ===================== SYNCHRONISATION EN LIGNE ===================== */
+// À renseigner après création du projet Supabase (URL + clé anon/publishable).
+// Ne JAMAIS mettre la clé service_role dans ce fichier public.
+const SUPABASE_URL = 'https://ayadeataqyeqsdwyykvj.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_dBrmpRzuSTldWiwLVx1iXg_rwUtW6dx';
+const CLOUD_TABLE = 'p7t_config';
+const cloudConfigured = () => /^https:\/\/.+\.supabase\.co$/.test(SUPABASE_URL) && SUPABASE_ANON_KEY.length > 20 && !SUPABASE_ANON_KEY.includes('TA_CLE');
+const cloudToken = () => { try { return sessionStorage.getItem('p7t_access_token') || ''; } catch(e) { return ''; } };
+async function loadOnlineData(){
+  if(!cloudConfigured()) return;
+  try{
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/${CLOUD_TABLE}?id=eq.1&select=data`,{headers:{apikey:SUPABASE_ANON_KEY}});
+    if(!r.ok) throw new Error('Lecture en ligne impossible ('+r.status+')');
+    const rows=await r.json();
+    if(rows[0] && rows[0].data && Array.isArray(rows[0].data.products)){
+      DATA=rows[0].data;
+      try{localStorage.setItem('p7t_draft',JSON.stringify(DATA));}catch(e){}
+      renderAll();
+    }
+  }catch(e){ console.warn('[P7T] Données en ligne indisponibles, version intégrée utilisée :',e); }
+}
 /* ===================== OUTILS ===================== */
-const HASH = 3263968075364161; // empreinte du mot de passe du mode développeur
 const cyrb53=(str,seed=0)=>{let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677);}h1=Math.imul(h1^(h1>>>16),2246822507);h1^=Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507);h2^=Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0);};
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -624,7 +644,7 @@ function save(){
 const cats=()=>[...new Set(DATA.products.map(p=>p.cat).filter(Boolean))];
 const unit=p=>r2(p.price*(1-(DATA.discount||0)/100));
 const oldOf=p=>(DATA.discount>0)?p.price:((p.old>p.price)?p.old:0);
-const isAdmin=()=>{try{return sessionStorage.getItem('p7t_admin')==='1'}catch(e){return false}};
+const isAdmin=()=>!!cloudToken();
 const visible=p=>!p.hidden||isAdmin();
 
 /* ===================== AFFICHAGE ===================== */
@@ -799,19 +819,31 @@ const A={
   open(){ if(!isAdmin()) return this.login(); this.enter(true); },
   login(){
     if($('#login')) return;
+    if(!cloudConfigured()){
+      alert('La synchronisation en ligne n’est pas configurée. Ajoute l’URL et la clé publique Supabase dans index.html, puis configure la base avec le fichier INSTALLATION-SUPABASE.sql.');
+      return;
+    }
     const m=document.createElement('div'); m.className='modal show'; m.id='login';
-    m.innerHTML=`<div class="box" id="login-box"><h3>🔐 Mode développeur</h3><p class="s">Entre le mot de passe administrateur.</p>
-      <input type="password" class="field" id="pw" autocomplete="off" placeholder="Mot de passe">
+    m.innerHTML=`<div class="box" id="login-box"><h3>🔐 Mode développeur</h3><p class="s">Connecte-toi avec le compte administrateur Supabase.</p>
+      <input type="email" class="field" id="admin-email" autocomplete="username" placeholder="Adresse e-mail administrateur">
+      <input type="password" class="field" id="pw" autocomplete="current-password" placeholder="Mot de passe">
       <button class="btn btn-primary" style="width:100%" id="pw-ok">Entrer</button>
       <button class="btn btn-ghost" style="width:100%;margin-top:8px" id="pw-x">Annuler</button></div>`;
     document.body.appendChild(m);
-    const pw=$('#pw'); pw.focus();
-    const go=()=>{
-      if(Date.now()<this.lock) return toast('Trop d\'essais, patiente quelques secondes');
-      if(cyrb53(pw.value)===(DATA.pass||HASH)){ try{sessionStorage.setItem('p7t_admin','1')}catch(e){} m.remove(); this.tries=0; this.enter(true); }
-      else{ this.tries++; if(this.tries>=3){this.lock=Date.now()+15000;this.tries=0;} pw.value=''; const b=$('#login-box'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); toast('Mot de passe incorrect'); }
+    const pw=$('#pw'), email=$('#admin-email'); email.focus();
+    const go=async()=>{
+      const b=$('#pw-ok'); if(!email.value.trim()||!pw.value) return toast('Entre ton e-mail et ton mot de passe');
+      b.disabled=true; b.textContent='Connexion…';
+      try{
+        const r=await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_ANON_KEY},body:JSON.stringify({email:email.value.trim(),password:pw.value})});
+        const d=await r.json();
+        if(!r.ok||!d.access_token) throw new Error(d.msg||d.message||'Identifiants incorrects');
+        sessionStorage.setItem('p7t_access_token',d.access_token);
+        if(d.refresh_token) sessionStorage.setItem('p7t_refresh_token',d.refresh_token);
+        m.remove(); this.tries=0; this.enter(true);
+      }catch(e){ toast('Connexion refusée : '+e.message); pw.value=''; b.disabled=false; b.textContent='Entrer'; }
     };
-    $('#pw-ok').onclick=go; pw.onkeydown=e=>{if(e.key==='Enter')go();};
+    $('#pw-ok').onclick=go; pw.onkeydown=e=>{if(e.key==='Enter')go();}; email.onkeydown=e=>{if(e.key==='Enter')pw.focus();};
     $('#pw-x').onclick=()=>m.remove();
   },
   enter(show){
@@ -820,7 +852,7 @@ const A={
     renderProducts(); renderTabs();
     if(show) this.render();
   },
-  logout(){ try{sessionStorage.removeItem('p7t_admin')}catch(e){} this.close(); const f=$('#fab'); if(f)f.remove(); document.body.classList.remove('admin-on'); renderProducts(); toast('Déconnecté'); },
+  logout(){ try{sessionStorage.removeItem('p7t_access_token');sessionStorage.removeItem('p7t_refresh_token')}catch(e){} this.close(); const f=$('#fab'); if(f)f.remove(); document.body.classList.remove('admin-on'); renderProducts(); toast('Déconnecté'); },
   close(){ const e=$('#admin'); if(e) e.remove(); },
   render(){
     let el=$('#admin'); const old=el&&el.querySelector('.abody'); const st=old?old.scrollTop:0;
@@ -909,19 +941,28 @@ const A={
       <h4>Contact / support</h4>
       <label class="lbl">Lien du support : invitation Discord (https://discord.gg/…), e-mail (mailto:ton@mail.com) ou autre lien</label>
       <input class="field" value="${esc(DATA.contact)}" placeholder="https://discord.gg/…" oninput="A.set('contact',this.value.trim(),true)">
-      <h4>Mot de passe du mode développeur</h4>
-      <label class="lbl">Nouveau mot de passe (8 caractères minimum)</label>
-      <div class="row"><input class="field" style="flex:1" type="password" id="newpw" autocomplete="new-password"><button class="abtn" onclick="A.newPw()">Changer</button></div>
+      <h4>Compte administrateur</h4>
+      <div class="note">Le mot de passe est géré de façon sécurisée par Supabase Auth. Pour le modifier, utilise le tableau de bord Supabase. Ne mets jamais de mot de passe ni de clé secrète dans le code du site.</div>
       <div class="note">Important : le montant est calculé dans le navigateur du client. Vérifie toujours dans PayPal que le montant reçu et le code de commande correspondent avant de livrer.</div>`;
   },
   newPw(){ const v=$('#newpw').value; if(v.length<8) return toast('8 caractères minimum'); DATA.pass=cyrb53(v); this.commit(); $('#newpw').value=''; toast('Mot de passe changé ✔ (pense à publier)'); },
 
   /* ---- Publier ---- */
   t_pub(){
-    return `<div class="note">Tes modifications sont enregistrées <b>dans ce navigateur uniquement</b> (brouillon). Pour que tes clients les voient, télécharge le site mis à jour puis remplace l'ancien fichier sur ton hébergement.</div>
-      <div class="row" style="margin:14px 0"><button class="btn btn-primary" style="padding:11px 20px" onclick="A.dl()">⬇ Télécharger le site mis à jour</button></div>
+    return `<div class="note">Les modifications restent en brouillon dans ce navigateur jusqu’à publication. Clique ci-dessous pour les envoyer à la base de données en ligne : tous les visiteurs chargeront ensuite ces données.</div>
+      <div class="row" style="margin:14px 0"><button class="btn btn-primary" style="padding:11px 20px" onclick="A.publishOnline()">☁️ Publier en ligne</button><button class="abtn" onclick="A.dl()">Télécharger une copie HTML</button></div>
+      <p class="sub" style="font-size:.82rem;margin:4px 0 12px">La publication ne remplace pas le fichier du site : elle met à jour les données partagées.</p>
       <h4>Sauvegarde des données</h4>
       <div class="row"><button class="abtn" onclick="A.dlJson()">Exporter (.json)</button><label class="abtn" style="cursor:pointer">Importer (.json)<input type="file" accept="application/json" style="display:none" onchange="A.impJson(this)"></label><button class="abtn danger" onclick="A.reset()">Abandonner mon brouillon</button></div>`;
+  },
+  async publishOnline(){
+    if(!cloudConfigured()) return toast('Configure Supabase avant de publier');
+    const token=cloudToken(); if(!token) return toast('Reconnecte-toi au mode développeur');
+    try{
+      const r=await fetch(`${SUPABASE_URL}/rest/v1/${CLOUD_TABLE}?on_conflict=id`,{method:'POST',headers:{apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({id:1,data:DATA})});
+      if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||e.details||'Erreur HTTP '+r.status);}
+      DATA.v=Date.now(); save(); toast('Publié en ligne ✔ Les visiteurs verront les changements au prochain chargement.');
+    }catch(e){toast('Publication impossible : '+e.message);}
   },
   dl(){ download('index.html',buildHTML(),'text/html'); toast('Site téléchargé ✔'); },
   dlJson(){ download('p7t-donnees.json',JSON.stringify(DATA,null,2),'application/json'); },
@@ -938,6 +979,7 @@ const A={
 
 /* ===================== DÉMARRAGE ===================== */
 renderAll();
+loadOnlineData();
 if(isAdmin()) A.enter(false);
 </script>
 </body>

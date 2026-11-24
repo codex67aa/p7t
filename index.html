@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P7T – Nitro & Boosts de serveur</title>
+<meta name="description" content="Boutique de Nitro et de boosts de serveur à petit prix. Paiement PayPal, commande simple, support réactif.">
+<style>
+:root{
+  --bg:#0c0d14;--bg2:#13141f;--card:#181a28;--line:#262940;
+  --text:#eceefb;--muted:#9aa0c3;--accent:#7c5cff;--accent2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--danger:#f87171;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{line-height:1.2}
+section{padding:80px 0}
+.tag{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:99px;color:var(--accent2);font-size:.8rem;margin-bottom:14px}
+.title{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:10px}
+.sub{color:var(--muted);max-width:620px;margin-bottom:40px}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
+.grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* BANNER */
+.banner{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;text-align:center;padding:9px 16px;font-size:.9rem;font-weight:600}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(12,13,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-weight:800;font-size:1.4rem;letter-spacing:-.5px;display:inline-flex;align-items:center}
+.logo img{height:36px;max-width:160px;object-fit:contain}
+nav ul{display:flex;gap:26px;list-style:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--text)}
+.cart-btn{background:var(--card);border:1px solid var(--line);color:var(--text);padding:9px 16px;border-radius:10px;cursor:pointer;font-size:.9rem}
+.cart-btn b{background:var(--accent);padding:1px 8px;border-radius:99px;margin-left:6px;font-size:.8rem}
+@media(max-width:780px){nav ul{display:none}}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;border:0;font-weight:600;font-size:1rem;cursor:pointer;transition:.2s;color:var(--text)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 30px rgba(124,92,255,.35)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-paypal{background:#ffc439;color:#111;box-shadow:none}
+
+/* HERO */
+.hero{padding:110px 0 90px;background:radial-gradient(800px 400px at 70% -10%,rgba(124,92,255,.25),transparent),radial-gradient(600px 300px at 10% 20%,rgba(34,211,238,.12),transparent)}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem);letter-spacing:-1.5px;margin-bottom:18px}
+.hero h1 em{font-style:normal}
+.hero p{color:var(--muted);font-size:1.1rem;margin-bottom:28px;max-width:520px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.hero-card h3{margin-bottom:16px;font-size:1.05rem;color:var(--muted);font-weight:500}
+.hero-img{width:100%;border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.5);display:block}
+.mini{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line);gap:12px}
+.mini:last-child{border:0}
+.mini b{color:var(--ok);white-space:nowrap}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+/* TRUST */
+.trust{background:var(--bg2);border-block:1px solid var(--line);padding:26px 0}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.trust-grid div{color:var(--muted);font-size:.92rem}
+.trust-grid strong{display:block;color:var(--text);font-size:1rem}
+@media(max-width:780px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* PRODUCTS */
+.tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.tab{padding:9px 20px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:.95rem}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;position:relative;transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.card.sold{opacity:.6}
+.card.hid{opacity:.45;border-style:dashed}
+.badge{position:absolute;top:16px;right:16px;background:var(--warn);color:#1a1300;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:99px;z-index:2}
+.card .ico{font-size:2rem;margin-bottom:12px}
+.pimg{height:150px;margin:-10px -10px 16px;border-radius:12px;overflow:hidden;background:var(--bg2)}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+.card ul{list-style:none;margin-bottom:20px;font-size:.88rem;color:var(--muted)}
+.card li{padding:4px 0}
+.card li::before{content:"✓ ";color:var(--ok);font-weight:700}
+.price{margin-top:auto;display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.price b{font-size:1.8rem}
+.price s{color:var(--muted);font-size:.95rem}
+.card .btn{width:100%;text-align:center}
+.edit-chip{display:none;position:absolute;top:12px;left:12px;z-index:3;background:#000a;border:1px solid var(--accent);color:#fff;border-radius:8px;padding:3px 10px;font-size:.75rem;cursor:pointer}
+body.admin-on .edit-chip{display:block}
+
+/* STEPS / FEATURES */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
+.step .n{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:800;margin-bottom:14px;color:#fff}
+.step p{color:var(--muted);font-size:.93rem}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.feat{padding:24px;border-radius:16px;background:var(--bg2);border:1px solid var(--line)}
+.feat .i{font-size:1.6rem;margin-bottom:8px}
+.feat p{color:var(--muted);font-size:.92rem}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line);font-size:.95rem}
+th{background:var(--bg2);color:var(--muted);font-weight:600}
+tr:last-child td{border:0}
+td:not(:first-child),th:not(:first-child){text-align:center}
+
+/* FAQ */
+.faq{max-width:780px;margin:auto}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";color:var(--accent2);font-size:1.3rem}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:12px;font-size:.95rem}
+
+/* CONTACT / FOOTER */
+.contact-box{background:linear-gradient(135deg,rgba(124,92,255,.2),rgba(34,211,238,.1));border:1px solid var(--line);border-radius:24px;padding:50px 30px;text-align:center}
+.contact-box p{color:var(--muted);margin:10px auto 26px;max-width:520px}
+footer{border-top:1px solid var(--line);padding:50px 0 30px;background:var(--bg2);color:var(--muted);font-size:.88rem}
+.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;margin-bottom:30px}
+.foot h4{color:var(--text);margin-bottom:12px}
+.foot li{list-style:none;padding:3px 0}
+.legal{border-top:1px solid var(--line);padding-top:20px;font-size:.8rem}
+#secret{cursor:default;user-select:none}
+@media(max-width:780px){.foot{grid-template-columns:1fr}}
+
+/* CART */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:-440px;width:min(420px,100%);height:100%;background:var(--bg2);border-left:1px solid var(--line);z-index:100;transition:.3s;display:flex;flex-direction:column;padding:24px}
+.drawer.show{right:0}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close{background:none;border:0;color:var(--text);font-size:1.5rem;cursor:pointer}
+#cart-items{flex:1;overflow:auto}
+.ci{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);gap:10px}
+.ci small{color:var(--muted)}
+.ci button{background:none;border:1px solid var(--line);color:var(--text);width:26px;height:26px;border-radius:7px;cursor:pointer}
+.qty{display:flex;align-items:center;gap:8px}
+.sumrow{display:flex;justify-content:space-between;color:var(--muted);font-size:.92rem;padding:3px 0}
+.total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700;padding:12px 0 16px}
+.empty{color:var(--muted);text-align:center;margin-top:40px}
+.field{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);margin-bottom:10px;font-size:.95rem;font-family:inherit}
+.promo-row{display:flex;gap:8px;margin-top:12px}
+.promo-row .field{margin:0}
+.promo-row button{white-space:nowrap;padding:0 16px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,100px);background:var(--ok);color:#00261a;padding:12px 22px;border-radius:12px;font-weight:600;transition:.3s;z-index:600}
+.toast.show{transform:translate(-50%,0)}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:400;padding:16px}
+.modal.show{display:flex}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:28px;width:min(500px,100%);max-height:92vh;overflow:auto}
+.box h3{margin-bottom:6px}
+.box p.s{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.code{font-family:ui-monospace,Menlo,monospace;background:var(--card);border:1px dashed var(--accent);border-radius:10px;padding:10px 14px;text-align:center;font-size:1.2rem;letter-spacing:1px;margin:10px 0 16px}
+.recap{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:.92rem}
+.recap div{display:flex;justify-content:space-between;padding:3px 0}
+.olist{margin:0 0 16px 18px;color:var(--muted);font-size:.9rem}
+.olist li{margin-bottom:6px}
+.shake{animation:sh .35s}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+/* ADMIN */
+.adm{position:fixed;top:0;right:0;height:100%;width:min(760px,100%);background:#0a0b12;border-left:2px solid var(--accent);z-index:300;display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.6)}
+.ahead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.abtn{background:var(--card);border:1px solid var(--line);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;margin-left:6px;font-size:.85rem}
+.abtn:hover{border-color:var(--accent)}
+.abtn.danger{border-color:var(--danger);color:var(--danger)}
+.atabs{display:flex;gap:4px;padding:10px 12px;border-bottom:1px solid var(--line);overflow-x:auto;background:var(--bg2)}
+.atab{background:none;border:0;color:var(--muted);padding:8px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:.9rem}
+.atab.on{background:var(--accent);color:#fff}
+.abody{flex:1;overflow:auto;padding:18px}
+.abody h4{margin:18px 0 8px}
+.ap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
+.ap.flash{border-color:var(--accent2);box-shadow:0 0 0 2px var(--accent2)}
+.aphead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.aphead b{font-size:1rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.fgrid .full{grid-column:1/-1}
+.lbl{font-size:.75rem;color:var(--muted);display:block;margin:8px 0 3px}
+.abody .field{margin-bottom:4px;padding:9px 11px;font-size:.9rem}
+.abody textarea.field{min-height:76px;resize:vertical}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;margin-right:14px;color:var(--muted)}
+.thumb{width:64px;height:64px;border-radius:10px;object-fit:cover;background:var(--bg2);border:1px solid var(--line)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.note{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.35);color:#f3d78a;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0}
+.fab{position:fixed;left:16px;bottom:16px;z-index:250;background:var(--accent);color:#fff;border:0;border-radius:99px;padding:10px 18px;font-weight:600;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="banner" class="banner" style="display:none"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo" id="logo"></a>
+    <nav><ul>
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#comment">Comment ça marche</a></li>
+      <li><a href="#avantages">Avantages</a></li>
+      <li><a href="#comparatif">Comparatif</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <button class="cart-btn" onclick="toggleCart()">🛒 Panier <b id="cart-count">0</b></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag" id="h-tag"></span>
+      <h1><span id="h-title"></span> <em class="grad" id="h-em"></em></h1>
+      <p id="h-text"></p>
+      <div class="cta">
+        <a href="#produits" class="btn btn-primary">Voir les offres</a>
+        <a href="#comment" class="btn btn-ghost">Comment ça marche</a>
+      </div>
+    </div>
+    <div id="h-side"></div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div><strong>💳 Paiement PayPal</strong>Simple et reconnu</div>
+    <div><strong>⚡ Livraison rapide</strong>Après vérification du paiement</div>
+    <div><strong>💬 Support humain</strong>Une vraie personne répond</div>
+    <div><strong>🔁 Suivi de commande</strong>Code de commande unique</div>
+  </div>
+</div>
+
+<section id="produits">
+  <div class="wrap">
+    <div class="center">
+      <span class="tag">Catalogue</span>
+      <h2 class="title">Choisis ton offre</h2>
+      <p class="sub">Des packs adaptés à tous les serveurs, du petit groupe d'amis à la grande communauté.</p>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="products"></div>
+  </div>
+</section>
+
+<section id="comment" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="center">
+      <span class="tag">Simple</span>
+      <h2 class="title">Comment ça marche ?</h2>
+      <p class="sub">Quatre étapes, pas de prise de tête.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Choisis</h3><p>Sélectionne ton offre et ajoute-la au panier.</p></div>
+      <div class="step"><div class="n">2</div><h3>Commande</h3><p>Valide avec ton pseudo : tu reçois un code de commande unique.</p></div>
+      <div class="step"><div class="n">3</div><h3>Paie avec PayPal</h3><p>Règle le montant exact et indique ton code dans la note PayPal.</p></div>
+      <div class="step"><div class="n">4</div><h3>Reçois</h3><p>Livraison dès que le paiement est vérifié.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="avantages">
+  <div class="wrap">
+    <div class="center">
+      <span class="tag">Pourquoi nous</span>
+      <h2 class="title">Nos avantages</h2>
+      <p class="sub">Ce qui fait la différence quand tu commandes chez nous.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="i">💸</div><h3>Prix attractifs</h3><p>Des tarifs compétitifs, affichés clairement, sans frais cachés.</p></div>
+      <div class="feat"><div class="i">🧾</div><h3>Transparence</h3><p>Durée et contenu de chaque offre indiqués avant l'achat.</p></div>
+      <div class="feat"><div class="i">🛠️</div><h3>Support dédié</h3><p>Un souci ? Contacte-nous avec ton code de commande.</p></div>
+      <div class="feat"><div class="i">🔒</div><h3>Données minimales</h3><p>On ne demande jamais ton mot de passe Discord. Jamais.</p></div>
+      <div class="feat"><div class="i">📦</div><h3>Packs avantageux</h3><p>Plus tu prends, plus tu économises.</p></div>
+      <div class="feat"><div class="i">🎁</div><h3>Codes promo</h3><p>Soldes et codes réguliers annoncés sur nos canaux.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="comparatif" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="center">
+      <span class="tag">Comparatif</span>
+      <h2 class="title">Nitro Basic ou Nitro ?</h2>
+      <p class="sub">Un aperçu rapide pour choisir. Vérifie toujours les avantages actuels sur le site officiel de Discord.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Fonction</th><th>Nitro Basic</th><th>Nitro</th></tr>
+        <tr><td>Emojis personnalisés partout</td><td>✅</td><td>✅</td></tr>
+        <tr><td>Limite d'envoi de fichiers augmentée</td><td>✅</td><td>✅ (plus élevée)</td></tr>
+        <tr><td>Boosts de serveur inclus</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Streaming en meilleure qualité</td><td>❌</td><td>✅</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="center">
+      <span class="tag">FAQ</span>
+      <h2 class="title">Questions fréquentes</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Quels moyens de paiement acceptez-vous ?</summary><p>Uniquement PayPal. Après validation de ta commande, un bouton te redirige vers PayPal avec le montant exact.</p></details>
+      <details><summary>À quoi sert le code de commande ?</summary><p>Il identifie ta commande. Indique-le dans la note du paiement PayPal et envoie-le au support pour que l'on retrouve ton paiement.</p></details>
+      <details><summary>Quel est le délai de livraison ?</summary><p>La livraison commence une fois le paiement vérifié. Si ta commande tarde, contacte le support avec ton code.</p></details>
+      <details><summary>Que dois-je fournir pour un boost de serveur ?</summary><p>Le nom ou l'invitation de ton serveur. Nous ne demandons jamais ton mot de passe ni ton code d'authentification.</p></details>
+      <details><summary>Puis-je être remboursé ?</summary><p>Si une commande ne peut pas être livrée, elle est remboursée. Les conditions détaillées sont à définir dans tes CGV.</p></details>
+      <details><summary>Êtes-vous affilié à Discord ?</summary><p>Non. Ce site est indépendant et n'est ni affilié, ni approuvé, ni sponsorisé par Discord Inc.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2 class="title">Une question avant de commander ?</h2>
+      <p>Écris-nous, on te répond avec plaisir.</p>
+      <a href="#" class="btn btn-primary" id="contact-link" style="display:none">Contacter le support</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><div class="logo" id="flogo" style="margin-bottom:10px"></div>Boutique indépendante de services pour communautés en ligne.</div>
+      <div><h4>Navigation</h4><ul><li><a href="#produits">Produits</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Légal</h4><ul><li><a href="#">CGV</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">Politique de confidentialité</a></li></ul></div>
+    </div>
+    <div class="legal"><span id="secret">©</span> 2026 <span id="f-name"></span>. Site indépendant, non affilié à Discord Inc. « Discord » et « Nitro » sont des marques de leurs propriétaires respectifs.</div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h3>Ton panier</h3><button class="close" onclick="toggleCart()">×</button></div>
+  <div id="cart-items"></div>
+  <div id="cart-foot"></div>
+</aside>
+<div class="modal" id="pay" onclick="if(event.target===this)closePay()"><div class="box" id="pay-box"></div></div>
+<div class="toast" id="toast"></div>
+
+<script type="application/json" id="site-data">{"v":1,"name":"P7T","tagline":"⚡ Boutique de services pour communautés","heroTitle":"Nitro & boosts de serveur,","heroEm":"au meilleur prix","heroText":"Donne de la puissance à ton serveur : niveaux de boost, emojis, qualité audio et plus encore. Commande en quelques clics et paie simplement avec PayPal.","heroImage":"","logoImage":"","banner":"","accent":"#7c5cff","accent2":"#22d3ee","paypal":"vraibdg1","currency":"EUR","contact":"","discount":0,"promos":[{"code":"P7T10","type":"percent","value":10,"active":false}],"products":[{"id":1,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×2","desc":"Passe ton serveur niveau 1.","price":4.99,"old":6.99,"badge":"Populaire","feat":["Durée : 1 mois","2 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":2,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×7","desc":"Débloque le niveau 2.","price":14.99,"old":19.99,"badge":"","feat":["Durée : 1 mois","7 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":3,"cat":"Boosts de serveur","ico":"🚀","img":"","name":"Boost serveur ×14","desc":"Débloque le niveau 3.","price":29.99,"old":39.99,"badge":"Top vente","feat":["Durée : 1 mois","14 boosts","Support inclus"],"hidden":false,"soldout":false},{"id":4,"cat":"Boosts de serveur","ico":"📆","img":"","name":"Boost serveur ×14 (3 mois)","desc":"Niveau 3 sur la durée.","price":79.99,"old":99.99,"badge":"","feat":["Durée : 3 mois","14 boosts","Support prioritaire"],"hidden":false,"soldout":false},{"id":5,"cat":"Nitro","ico":"💎","img":"","name":"Nitro Basic – 1 mois","desc":"Les essentiels du Nitro.","price":2.99,"old":3.99,"badge":"","feat":["Durée : 1 mois","Emojis partout","Fichiers plus lourds"],"hidden":false,"soldout":false},{"id":6,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 1 mois","desc":"L'expérience complète.","price":7.99,"old":9.99,"badge":"Promo","feat":["Durée : 1 mois","Boosts inclus","Streaming amélioré"],"hidden":false,"soldout":false},{"id":7,"cat":"Nitro","ico":"💎","img":"","name":"Nitro – 12 mois","desc":"Le meilleur rapport durée/prix.","price":69.99,"old":95.99,"badge":"","feat":["Durée : 12 mois","Boosts inclus","Économie maximale"],"hidden":false,"soldout":false},{"id":8,"cat":"Packs","ico":"🎁","img":"","name":"Pack Communauté","desc":"Nitro 1 mois + boost ×7.","price":19.99,"old":22.98,"badge":"Pack","feat":["Nitro 1 mois","Boost ×7 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false},{"id":9,"cat":"Packs","ico":"👑","img":"","name":"Pack Ultime","desc":"Nitro 12 mois + boost ×14.","price":89.99,"old":109.98,"badge":"","feat":["Nitro 12 mois","Boost ×14 (1 mois)","Support prioritaire"],"hidden":false,"soldout":false}]}</script>
+
+<script>
+/* Copie intacte du fichier au chargement : sert à "Publier" (export du site mis à jour). */
+const ORIGINAL = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+/* ===================== OUTILS ===================== */
+const HASH = 3263968075364161; // empreinte du mot de passe du mode développeur
+const cyrb53=(str,seed=0)=>{let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677);}h1=Math.imul(h1^(h1>>>16),2246822507);h1^=Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507);h2^=Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0);};
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeImg = u=>/^(data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,|https?:\/\/)/i.test(u||'')?u:'';
+const r2 = n=>Math.round(n*100)/100;
+const SYM={EUR:'€',USD:'$',GBP:'£',CAD:'$ CA',CHF:'CHF'};
+const fmt = n=>n.toFixed(2).replace('.',',')+' '+(SYM[DATA.currency]||DATA.currency);
+
+/* ===================== DONNÉES ===================== */
+let DATA = JSON.parse($('#site-data').textContent);
+try{ const d=JSON.parse(localStorage.getItem('p7t_draft')||'null'); if(d && d.v>=DATA.v) DATA=d; }catch(e){}
+function save(){
+  DATA.v=Date.now();
+  try{ localStorage.setItem('p7t_draft',JSON.stringify(DATA)); }
+  catch(e){ toast('⚠ Stockage plein : réduis la taille des images'); }
+}
+const cats=()=>[...new Set(DATA.products.map(p=>p.cat).filter(Boolean))];
+const unit=p=>r2(p.price*(1-(DATA.discount||0)/100));
+const oldOf=p=>(DATA.discount>0)?p.price:((p.old>p.price)?p.old:0);
+const isAdmin=()=>{try{return sessionStorage.getItem('p7t_admin')==='1'}catch(e){return false}};
+const visible=p=>!p.hidden||isAdmin();
+
+/* ===================== AFFICHAGE ===================== */
+let filter='all';
+function logoHTML(){
+  const img=safeImg(DATA.logoImage);
+  return img?`<img src="${img}" alt="${esc(DATA.name)}">`:`<span class="grad">${esc(DATA.name)}</span>`;
+}
+function renderTheme(){
+  const r=document.documentElement.style;
+  r.setProperty('--accent',DATA.accent||'#7c5cff');
+  r.setProperty('--accent2',DATA.accent2||'#22d3ee');
+  document.title=DATA.name+' – Nitro & Boosts de serveur';
+  $('#logo').innerHTML=logoHTML(); $('#flogo').innerHTML=logoHTML();
+  $('#f-name').textContent=DATA.name;
+  const b=$('#banner'); const txt=DATA.banner||(DATA.discount>0?`🔥 Soldes : -${DATA.discount}% sur tout le site !`:'');
+  b.style.display=txt?'block':'none'; b.textContent=txt;
+  const c=$('#contact-link');
+  if(DATA.contact){c.style.display='inline-block';c.href=DATA.contact;c.target=DATA.contact.startsWith('mailto:')?'_self':'_blank';c.rel='noopener';}
+  else c.style.display='none';
+}
+function renderHero(){
+  $('#h-tag').textContent=DATA.tagline; $('#h-title').textContent=DATA.heroTitle;
+  $('#h-em').textContent=DATA.heroEm; $('#h-text').textContent=DATA.heroText;
+  const img=safeImg(DATA.heroImage);
+  if(img){ $('#h-side').innerHTML=`<img class="hero-img" src="${img}" alt="">`; return; }
+  const top=DATA.products.filter(p=>!p.hidden).slice(0,4);
+  $('#h-side').innerHTML=`<div class="hero-card"><h3>Offres populaires</h3>${top.map(p=>`<div class="mini"><span>${esc(p.name)}</span><b>dès ${fmt(unit(p))}</b></div>`).join('')||'<div class="mini"><span>Bientôt de nouvelles offres</span></div>'}</div>`;
+}
+function renderTabs(){
+  const list=['all',...cats()]; if(!list.includes(filter)) filter='all';
+  $('#tabs').innerHTML=list.map(c=>`<button class="tab${c===filter?' active':''}" data-f="${esc(c)}">${c==='all'?'Tout':esc(c)}</button>`).join('');
+}
+function renderProducts(){
+  const el=$('#products');
+  const list=DATA.products.filter(p=>visible(p)&&(filter==='all'||p.cat===filter));
+  el.innerHTML=list.map(p=>{
+    const img=safeImg(p.img), old=oldOf(p);
+    return `<div class="card${p.soldout?' sold':''}${p.hidden?' hid':''}" id="pc-${p.id}">
+      <button class="edit-chip" onclick="A.edit(${p.id})">✏️ Éditer</button>
+      ${p.badge?`<span class="badge">${esc(p.badge)}</span>`:''}
+      ${p.hidden?'<span class="badge" style="background:#888">Masqué</span>':''}
+      ${img?`<div class="pimg"><img src="${img}" alt="${esc(p.name)}" loading="lazy"></div>`:`<div class="ico">${esc(p.ico)}</div>`}
+      <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+      <ul>${(p.feat||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="price"><b>${fmt(unit(p))}</b>${old?`<s>${fmt(old)}</s>`:''}</div>
+      <button class="btn btn-primary" ${p.soldout?'disabled':''} onclick="addToCart(${p.id})">${p.soldout?'Rupture de stock':'Ajouter au panier'}</button>
+    </div>`;}).join('')||'<p class="empty">Aucun produit pour le moment.</p>';
+}
+$('#tabs').addEventListener('click',e=>{
+  const t=e.target.closest('.tab'); if(!t) return;
+  filter=t.dataset.f; renderTabs(); renderProducts();
+});
+function renderAll(){ renderTheme(); renderHero(); renderTabs(); renderProducts(); renderCart(); }
+
+/* ===================== PANIER ===================== */
+let cart=[]; try{cart=JSON.parse(localStorage.getItem('p7t_cart')||'[]')}catch(e){}
+let promo=null;
+const prod=id=>DATA.products.find(p=>p.id===id);
+const saveCart=()=>{try{localStorage.setItem('p7t_cart',JSON.stringify(cart))}catch(e){}};
+function addToCart(id){
+  const p=prod(id); if(!p||p.soldout) return;
+  const it=cart.find(c=>c.id===id); if(it) it.q++; else cart.push({id,q:1});
+  saveCart(); renderCart(); toast('Ajouté au panier ✔');
+}
+function changeQty(id,d){
+  const it=cart.find(c=>c.id===id); if(!it) return;
+  it.q+=d; if(it.q<=0) cart=cart.filter(c=>c.id!==id);
+  saveCart(); renderCart();
+}
+function totals(){
+  const lines=cart.map(c=>({p:prod(c.id),q:c.q})).filter(l=>l.p&&!l.p.hidden&&!l.p.soldout);
+  const sub=r2(lines.reduce((s,l)=>s+unit(l.p)*l.q,0));
+  let d=0; if(promo) d=promo.type==='percent'?r2(sub*promo.value/100):Math.min(sub,+promo.value||0);
+  return {lines,sub,d:r2(d),total:r2(Math.max(0,sub-d))};
+}
+function renderCart(){
+  const t=totals();
+  $('#cart-count').textContent=t.lines.reduce((s,l)=>s+l.q,0);
+  $('#cart-items').innerHTML=t.lines.length?t.lines.map(l=>`<div class="ci"><div><b>${esc(l.p.name)}</b><br><small>${fmt(unit(l.p))}</small></div>
+    <div class="qty"><button onclick="changeQty(${l.p.id},-1)">–</button><span>${l.q}</span><button onclick="changeQty(${l.p.id},1)">+</button></div></div>`).join(''):'<p class="empty">Ton panier est vide.</p>';
+  const keep=$('#promo-in')?$('#promo-in').value:(promo?promo.code:'');
+  $('#cart-foot').innerHTML=t.lines.length?`
+    <div class="promo-row"><input class="field" id="promo-in" placeholder="Code promo" value="${esc(keep)}"><button class="btn btn-ghost" onclick="applyPromo()">Appliquer</button></div>
+    <div style="margin-top:12px">
+      <div class="sumrow"><span>Sous-total</span><span>${fmt(t.sub)}</span></div>
+      ${t.d>0?`<div class="sumrow"><span>Code ${esc(promo.code)}</span><span>– ${fmt(t.d)}</span></div>`:''}
+    </div>
+    <div class="total"><span>Total</span><span>${fmt(t.total)}</span></div>
+    <input class="field" id="contact-name" placeholder="Ton pseudo Discord (pour la livraison)">
+    <input class="field" id="contact-target" placeholder="Nom / invitation du serveur (si boost)">
+    <button class="btn btn-primary" style="width:100%" onclick="checkout()">Commander & payer avec PayPal</button>`:'';
+}
+function applyPromo(){
+  const code=$('#promo-in').value.trim().toUpperCase();
+  if(!code){promo=null;renderCart();return;}
+  const f=(DATA.promos||[]).find(x=>x.active&&String(x.code).toUpperCase()===code);
+  if(!f){toast('Code invalide');return;}
+  promo=f; renderCart(); toast('Code appliqué ✔');
+}
+function toggleCart(){ $('#drawer').classList.toggle('show'); $('#overlay').classList.toggle('show'); }
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
+
+/* ===================== PAIEMENT PAYPAL ===================== */
+let lastRecap='';
+function checkout(){
+  const t=totals(); if(!t.lines.length) return toast('Panier vide');
+  const name=$('#contact-name').value.trim(); if(!name) return toast('Indique ton pseudo Discord');
+  if(t.total<=0) return toast('Total invalide');
+  const target=$('#contact-target').value.trim();
+  const code='CMD-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  const user=/^[\w.\-]+$/.test(DATA.paypal||'')?DATA.paypal:'';
+  const url=user?`https://paypal.me/${user}/${t.total.toFixed(2)}${DATA.currency}`:'';
+  const lines=t.lines.map(l=>`- ${l.q} × ${l.p.name} (${fmt(unit(l.p))})`).join('\n');
+  lastRecap=`Commande ${code}\n${lines}\n${t.d>0?`Code promo ${promo.code} : -${fmt(t.d)}\n`:''}Total : ${fmt(t.total)}\nPseudo : ${name}\nServeur : ${target||'-'}\nPaiement : PayPal`;
+  let contactBtn='';
+  if(DATA.contact){
+    const href=DATA.contact.startsWith('mailto:')?DATA.contact+(DATA.contact.includes('?')?'&':'?')+'subject='+encodeURIComponent('Commande '+code)+'&body='+encodeURIComponent(lastRecap):DATA.contact;
+    contactBtn=`<a class="btn btn-ghost" style="width:100%;text-align:center;margin-top:8px" href="${esc(href)}" target="_blank" rel="noopener">📨 Envoyer ma preuve de paiement</a>`;
+  }
+  $('#pay-box').innerHTML=`
+    <h3>✅ Commande prête</h3><p class="s">Voici ton code de commande. Garde-le, il t'identifie.</p>
+    <div class="code">${esc(code)}</div>
+    <div class="recap">${t.lines.map(l=>`<div><span>${l.q} × ${esc(l.p.name)}</span><span>${fmt(unit(l.p)*l.q)}</span></div>`).join('')}
+      ${t.d>0?`<div><span>Code ${esc(promo.code)}</span><span>– ${fmt(t.d)}</span></div>`:''}
+      <div style="font-weight:700;border-top:1px solid var(--line);margin-top:6px;padding-top:8px"><span>Total à payer</span><span>${fmt(t.total)}</span></div></div>
+    <ol class="olist">
+      <li>Clique sur le bouton PayPal et paie <b>exactement ${fmt(t.total)}</b>.</li>
+      <li>Écris <b>${esc(code)}</b> dans la note du paiement.</li>
+      <li>Envoie ta preuve de paiement + ton code au support.</li>
+      <li>Ta commande est livrée dès que le paiement est vérifié.</li>
+    </ol>
+    ${url?`<a class="btn btn-paypal" style="width:100%;text-align:center" href="${esc(url)}" target="_blank" rel="noopener">Payer ${fmt(t.total)} avec PayPal</a>`:'<div class="note">PayPal n\'est pas configuré. Contacte le support.</div>'}
+    ${contactBtn}
+    <button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="copyRecap()">📋 Copier le récapitulatif</button>
+    <button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="finishOrder()">Terminer & vider le panier</button>`;
+  $('#pay').classList.add('show');
+}
+function copyRecap(){
+  try{ navigator.clipboard.writeText(lastRecap).then(()=>toast('Récapitulatif copié ✔'),()=>toast('Copie impossible')); }
+  catch(e){ toast('Copie impossible'); }
+}
+function closePay(){ $('#pay').classList.remove('show'); }
+function finishOrder(){ cart=[]; promo=null; saveCart(); renderCart(); closePay(); toggleCart(); toast('Merci pour ta commande ✔'); }
+
+/* ===================== MODE DÉVELOPPEUR ===================== */
+function imgToData(file,max){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onerror=rej;
+    fr.onload=()=>{const im=new Image();im.onerror=rej;
+      im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');
+        c.width=Math.max(1,Math.round(im.width*s));c.height=Math.max(1,Math.round(im.height*s));
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+        res(c.toDataURL(file.type==='image/png'?'image/png':'image/jpeg',.82));};
+      im.src=fr.result;};
+    fr.readAsDataURL(file);
+  });
+}
+function buildHTML(){
+  const json=JSON.stringify(DATA).replace(/</g,'\\u003c');
+  return ORIGINAL.replace(/(<script type="application\/json" id="site-data">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+json+b);
+}
+function download(name,text,type){
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+
+const A={
+  tab:'products', tries:0, lock:0,
+  tabs:[['products','🛍️ Produits'],['promos','🏷️ Promos'],['look','🎨 Apparence'],['pay','💳 Paiement'],['pub','🚀 Publier']],
+  open(){ if(!isAdmin()) return this.login(); this.enter(true); },
+  login(){
+    if($('#login')) return;
+    const m=document.createElement('div'); m.className='modal show'; m.id='login';
+    m.innerHTML=`<div class="box" id="login-box"><h3>🔐 Mode développeur</h3><p class="s">Entre le mot de passe administrateur.</p>
+      <input type="password" class="field" id="pw" autocomplete="off" placeholder="Mot de passe">
+      <button class="btn btn-primary" style="width:100%" id="pw-ok">Entrer</button>
+      <button class="btn btn-ghost" style="width:100%;margin-top:8px" id="pw-x">Annuler</button></div>`;
+    document.body.appendChild(m);
+    const pw=$('#pw'); pw.focus();
+    const go=()=>{
+      if(Date.now()<this.lock) return toast('Trop d\'essais, patiente quelques secondes');
+      if(cyrb53(pw.value)===(DATA.pass||HASH)){ try{sessionStorage.setItem('p7t_admin','1')}catch(e){} m.remove(); this.tries=0; this.enter(true); }
+      else{ this.tries++; if(this.tries>=3){this.lock=Date.now()+15000;this.tries=0;} pw.value=''; const b=$('#login-box'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); toast('Mot de passe incorrect'); }
+    };
+    $('#pw-ok').onclick=go; pw.onkeydown=e=>{if(e.key==='Enter')go();};
+    $('#pw-x').onclick=()=>m.remove();
+  },
+  enter(show){
+    document.body.classList.add('admin-on');
+    if(!$('#fab')){const f=document.createElement('button');f.id='fab';f.className='fab';f.textContent='⚙️ Mode dev';f.onclick=()=>A.render();document.body.appendChild(f);}
+    renderProducts(); renderTabs();
+    if(show) this.render();
+  },
+  logout(){ try{sessionStorage.removeItem('p7t_admin')}catch(e){} this.close(); const f=$('#fab'); if(f)f.remove(); document.body.classList.remove('admin-on'); renderProducts(); toast('Déconnecté'); },
+  close(){ const e=$('#admin'); if(e) e.remove(); },
+  render(){
+    let el=$('#admin'); const old=el&&el.querySelector('.abody'); const st=old?old.scrollTop:0;
+    if(!el){el=document.createElement('div');el.id='admin';el.className='adm';document.body.appendChild(el);}
+    el.innerHTML=`<div class="ahead"><b>⚙️ Mode développeur</b><span><button class="abtn" onclick="A.logout()">Se déconnecter</button><button class="abtn" onclick="A.close()">✕</button></span></div>
+      <div class="atabs">${this.tabs.map(t=>`<button class="atab${t[0]===this.tab?' on':''}" onclick="A.go('${t[0]}')">${t[1]}</button>`).join('')}</div>
+      <div class="abody">${this['t_'+this.tab]()}</div>`;
+    el.querySelector('.abody').scrollTop=st;
+  },
+  go(t){ this.tab=t; this.render(); },
+  commit(all){ save(); if(all) renderAll(); else { renderTabs(); renderProducts(); renderHero(); renderCart(); } },
+  edit(id){ this.tab='products'; this.render(); const n=$('#ap-'+id); if(n){n.scrollIntoView({block:'center'});n.classList.add('flash');setTimeout(()=>n.classList.remove('flash'),1600);} },
+
+  /* ---- Produits ---- */
+  t_products(){
+    return `<div class="row"><button class="btn btn-primary" style="padding:10px 18px" onclick="A.addP()">＋ Nouveau produit</button><span class="sub" style="margin:0;font-size:.82rem">Les modifications s'affichent en direct sur le site.</span></div>
+    <datalist id="cats">${cats().map(c=>`<option value="${esc(c)}">`).join('')}</datalist>
+    ${DATA.products.map((p,i)=>`<div class="ap" id="ap-${p.id}">
+      <div class="aphead"><div class="row">${safeImg(p.img)?`<img class="thumb" src="${safeImg(p.img)}" alt="">`:`<span style="font-size:1.8rem">${esc(p.ico)}</span>`}<b>${esc(p.name)}</b></div>
+        <div><button class="abtn" onclick="A.mv(${p.id},-1)" ${i===0?'disabled':''}>↑</button><button class="abtn" onclick="A.mv(${p.id},1)" ${i===DATA.products.length-1?'disabled':''}>↓</button><button class="abtn" onclick="A.dupP(${p.id})">Dupliquer</button><button class="abtn danger" onclick="A.delP(${p.id})">Supprimer</button></div></div>
+      <div class="fgrid">
+        <div><label class="lbl">Nom</label><input class="field" value="${esc(p.name)}" oninput="A.sp(${p.id},'name',this.value)"></div>
+        <div><label class="lbl">Catégorie</label><input class="field" list="cats" value="${esc(p.cat)}" oninput="A.sp(${p.id},'cat',this.value)"></div>
+        <div><label class="lbl">Prix (${esc(DATA.currency)})</label><input class="field" type="number" step="0.01" min="0" value="${p.price}" oninput="A.sp(${p.id},'price',this.value)"></div>
+        <div><label class="lbl">Ancien prix barré (0 = aucun)</label><input class="field" type="number" step="0.01" min="0" value="${p.old||0}" oninput="A.sp(${p.id},'old',this.value)"></div>
+        <div class="full"><label class="lbl">Description</label><input class="field" value="${esc(p.desc)}" oninput="A.sp(${p.id},'desc',this.value)"></div>
+        <div><label class="lbl">Badge (ex : Promo, Top vente)</label><input class="field" value="${esc(p.badge)}" oninput="A.sp(${p.id},'badge',this.value)"></div>
+        <div><label class="lbl">Emoji (si pas d'image)</label><input class="field" value="${esc(p.ico)}" oninput="A.sp(${p.id},'ico',this.value)"></div>
+        <div class="full"><label class="lbl">Image : importer un fichier ou coller un lien</label>
+          <div class="row"><input type="file" accept="image/*" onchange="A.img(${p.id},this)"><input class="field" style="flex:1;min-width:160px" placeholder="https://…" value="${p.img&&p.img.startsWith('http')?esc(p.img):''}" oninput="A.sp(${p.id},'img',this.value)">${p.img?`<button class="abtn danger" onclick="A.sp(${p.id},'img','');A.render()">Retirer</button>`:''}</div></div>
+        <div class="full"><label class="lbl">Points forts (un par ligne)</label><textarea class="field" oninput="A.feat(${p.id},this.value)">${esc((p.feat||[]).join('\n'))}</textarea></div>
+        <div class="full" style="margin-top:8px"><label class="chk"><input type="checkbox" ${p.hidden?'checked':''} onchange="A.sp(${p.id},'hidden',this.checked)"> Masqué (invisible pour les clients)</label><label class="chk"><input type="checkbox" ${p.soldout?'checked':''} onchange="A.sp(${p.id},'soldout',this.checked)"> Rupture de stock</label></div>
+      </div></div>`).join('')}`;
+  },
+  sp(id,k,v){ const p=prod(id); if(!p) return; p[k]=(k==='price'||k==='old')?(parseFloat(v)||0):v; this.commit(); },
+  feat(id,v){ const p=prod(id); p.feat=v.split('\n').map(s=>s.trim()).filter(Boolean); this.commit(); },
+  async img(id,inp){ const f=inp.files[0]; if(!f) return; try{ prod(id).img=await imgToData(f,800); this.commit(); this.render(); }catch(e){ toast('Image illisible'); } },
+  addP(){ const id=Math.max(0,...DATA.products.map(p=>p.id))+1;
+    DATA.products.unshift({id,cat:cats()[0]||'Général',ico:'🆕',img:'',name:'Nouveau produit',desc:'Description du produit',price:9.99,old:0,badge:'',feat:['Livraison rapide'],hidden:false,soldout:false});
+    this.commit(); this.tab='products'; this.render(); const n=$('#ap-'+id); if(n) n.scrollIntoView({block:'start'}); },
+  dupP(id){ const p=prod(id); const c=JSON.parse(JSON.stringify(p)); c.id=Math.max(...DATA.products.map(x=>x.id))+1; c.name+=' (copie)';
+    DATA.products.splice(DATA.products.indexOf(p)+1,0,c); this.commit(); this.render(); },
+  delP(id){ const p=prod(id); if(!confirm('Supprimer « '+p.name+' » ?')) return; DATA.products=DATA.products.filter(x=>x.id!==id); cart=cart.filter(c=>c.id!==id); saveCart(); this.commit(); this.render(); },
+  mv(id,d){ const i=DATA.products.findIndex(p=>p.id===id),j=i+d; if(j<0||j>=DATA.products.length) return; [DATA.products[i],DATA.products[j]]=[DATA.products[j],DATA.products[i]]; this.commit(); this.render(); },
+
+  /* ---- Promos ---- */
+  t_promos(){
+    return `<h4>Soldes sur tout le site</h4>
+      <p class="sub" style="margin-bottom:8px;font-size:.85rem">Applique une réduction automatique à tous les produits (l'ancien prix est barré).</p>
+      <div class="row"><input class="field" style="width:120px" type="number" min="0" max="90" value="${DATA.discount||0}" oninput="A.set('discount',Math.min(90,Math.max(0,parseFloat(this.value)||0)),true)"> <span>% de réduction</span></div>
+      <h4>Codes promo</h4>
+      ${(DATA.promos||[]).map((x,i)=>`<div class="ap"><div class="row">
+        <input class="field" style="width:150px" placeholder="CODE" value="${esc(x.code)}" oninput="A.pr(${i},'code',this.value.toUpperCase())">
+        <select class="field" style="width:130px" onchange="A.pr(${i},'type',this.value)"><option value="percent" ${x.type==='percent'?'selected':''}>en %</option><option value="fixed" ${x.type==='fixed'?'selected':''}>en montant</option></select>
+        <input class="field" style="width:100px" type="number" min="0" step="0.01" value="${x.value}" oninput="A.pr(${i},'value',parseFloat(this.value)||0)">
+        <label class="chk"><input type="checkbox" ${x.active?'checked':''} onchange="A.pr(${i},'active',this.checked)"> Actif</label>
+        <button class="abtn danger" onclick="A.delPr(${i})">Supprimer</button></div></div>`).join('')}
+      <button class="btn btn-ghost" style="margin-top:12px;padding:10px 18px" onclick="A.addPr()">＋ Nouveau code</button>
+      <div class="note">Les codes promo sont stockés dans le fichier du site : un visiteur curieux peut les retrouver en lisant le code source. Garde les réductions raisonnables.</div>`;
+  },
+  pr(i,k,v){ DATA.promos[i][k]=v; if(promo&&DATA.promos[i]===promo&&!promo.active) promo=null; this.commit(); },
+  addPr(){ (DATA.promos=DATA.promos||[]).push({code:'NOUVEAU',type:'percent',value:10,active:true}); this.commit(); this.render(); },
+  delPr(i){ if(promo===DATA.promos[i]) promo=null; DATA.promos.splice(i,1); this.commit(); this.render(); },
+
+  /* ---- Apparence ---- */
+  t_look(){
+    const f=(k,l,full,ta)=>`<div class="${full?'full':''}"><label class="lbl">${l}</label>${ta?`<textarea class="field" oninput="A.set('${k}',this.value,true)">${esc(DATA[k])}</textarea>`:`<input class="field" value="${esc(DATA[k])}" oninput="A.set('${k}',this.value,true)">`}</div>`;
+    return `<div class="fgrid">${f('name','Nom du site')}${f('tagline','Petit label du haut')}${f('heroTitle','Titre (début)')}${f('heroEm','Titre (partie colorée)')}${f('heroText','Texte de présentation',true,true)}${f('banner','Bandeau d\'annonce en haut (vide = aucun)',true)}
+      <div><label class="lbl">Couleur principale</label><input type="color" class="field" style="height:42px;padding:3px" value="${esc(DATA.accent)}" oninput="A.set('accent',this.value,true)"></div>
+      <div><label class="lbl">Couleur secondaire</label><input type="color" class="field" style="height:42px;padding:3px" value="${esc(DATA.accent2)}" oninput="A.set('accent2',this.value,true)"></div>
+      <div class="full"><label class="lbl">Logo (image) — remplace le nom écrit</label><div class="row"><input type="file" accept="image/*" onchange="A.siteImg('logoImage',this,300)">${DATA.logoImage?`${'<img class="thumb" src="'+safeImg(DATA.logoImage)+'" alt="">'}<button class="abtn danger" onclick="A.set('logoImage','',true);A.render()">Retirer</button>`:''}</div></div>
+      <div class="full"><label class="lbl">Image d'accueil — remplace la carte « Offres populaires »</label><div class="row"><input type="file" accept="image/*" onchange="A.siteImg('heroImage',this,1100)">${DATA.heroImage?`${'<img class="thumb" src="'+safeImg(DATA.heroImage)+'" alt="">'}<button class="abtn danger" onclick="A.set('heroImage','',true);A.render()">Retirer</button>`:''}</div></div>
+    </div>`;
+  },
+  set(k,v,all){ DATA[k]=v; this.commit(all); },
+  async siteImg(k,inp,max){ const f=inp.files[0]; if(!f) return; try{ DATA[k]=await imgToData(f,max); this.commit(true); this.render(); }catch(e){ toast('Image illisible'); } },
+
+  /* ---- Paiement ---- */
+  t_pay(){
+    return `<h4>PayPal</h4>
+      <label class="lbl">Identifiant PayPal.me (la fin du lien paypal.me/…)</label>
+      <input class="field" value="${esc(DATA.paypal)}" oninput="A.set('paypal',this.value.trim())">
+      <p class="sub" style="margin:8px 0;font-size:.82rem">Lien utilisé : <b>paypal.me/${esc(DATA.paypal)}/MONTANT${esc(DATA.currency)}</b></p>
+      <label class="lbl">Devise</label>
+      <select class="field" onchange="A.set('currency',this.value,true)">${Object.keys(SYM).map(c=>`<option ${c===DATA.currency?'selected':''}>${c}</option>`).join('')}</select>
+      <h4>Contact / support</h4>
+      <label class="lbl">Lien du support : invitation Discord (https://discord.gg/…), e-mail (mailto:ton@mail.com) ou autre lien</label>
+      <input class="field" value="${esc(DATA.contact)}" placeholder="https://discord.gg/…" oninput="A.set('contact',this.value.trim(),true)">
+      <h4>Mot de passe du mode développeur</h4>
+      <label class="lbl">Nouveau mot de passe (8 caractères minimum)</label>
+      <div class="row"><input class="field" style="flex:1" type="password" id="newpw" autocomplete="new-password"><button class="abtn" onclick="A.newPw()">Changer</button></div>
+      <div class="note">Important : le montant est calculé dans le navigateur du client. Vérifie toujours dans PayPal que le montant reçu et le code de commande correspondent avant de livrer.</div>`;
+  },
+  newPw(){ const v=$('#newpw').value; if(v.length<8) return toast('8 caractères minimum'); DATA.pass=cyrb53(v); this.commit(); $('#newpw').value=''; toast('Mot de passe changé ✔ (pense à publier)'); },
+
+  /* ---- Publier ---- */
+  t_pub(){
+    return `<div class="note">Tes modifications sont enregistrées <b>dans ce navigateur uniquement</b> (brouillon). Pour que tes clients les voient, télécharge le site mis à jour puis remplace l'ancien fichier sur ton hébergement.</div>
+      <div class="row" style="margin:14px 0"><button class="btn btn-primary" style="padding:11px 20px" onclick="A.dl()">⬇ Télécharger le site mis à jour</button></div>
+      <h4>Sauvegarde des données</h4>
+      <div class="row"><button class="abtn" onclick="A.dlJson()">Exporter (.json)</button><label class="abtn" style="cursor:pointer">Importer (.json)<input type="file" accept="application/json" style="display:none" onchange="A.impJson(this)"></label><button class="abtn danger" onclick="A.reset()">Abandonner mon brouillon</button></div>`;
+  },
+  dl(){ download('index.html',buildHTML(),'text/html'); toast('Site téléchargé ✔'); },
+  dlJson(){ download('p7t-donnees.json',JSON.stringify(DATA,null,2),'application/json'); },
+  impJson(inp){ const f=inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(!Array.isArray(d.products)) throw 0; DATA=d; this.commit(true); this.render(); toast('Données importées ✔'); }catch(e){ toast('Fichier invalide'); } }; r.readAsText(f); },
+  reset(){ if(!confirm('Abandonner toutes les modifications non publiées ?')) return; try{localStorage.removeItem('p7t_draft')}catch(e){} location.reload(); }
+};
+
+/* ----- Accès caché : 5 clics sur le © du pied de page, ou Ctrl+Alt+P ----- */
+(function(){
+  let n=0,t;
+  $('#secret').addEventListener('click',()=>{ n++; clearTimeout(t); t=setTimeout(()=>n=0,2000); if(n>=5){n=0;A.open();} });
+  document.addEventListener('keydown',e=>{ if(e.ctrlKey&&e.altKey&&e.code==='KeyP'){e.preventDefault();A.open();} });
+})();
+
+/* ===================== DÉMARRAGE ===================== */
+renderAll();
+if(isAdmin()) A.enter(false);
+</script>
+</body>
+</html>
